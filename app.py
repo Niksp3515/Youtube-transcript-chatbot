@@ -46,10 +46,10 @@ with st.sidebar:
                 st.session_state.current_video = video_id
                 
                 with st.spinner("Fetching English transcript..."):
-                    transcript = fetch_transcript(video_id)
+                    transcript, error_msg = fetch_transcript(video_id)
                 
                 if not transcript:
-                    st.error("Could not fetch transcript. It might be disabled for this video, or no English captions exist.")
+                    st.error(f"Could not fetch transcript. Technical details: {error_msg}")
                 else:
                     with st.spinner("Embedding and Building Knowledge Base..."):
                         vector_store = build_vector_store(transcript)

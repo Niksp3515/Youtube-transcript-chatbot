@@ -21,13 +21,26 @@ def extract_video_id(url: str) -> Optional[str]:
 def fetch_transcript(video_id: str) -> Optional[str]:
     """Fetches the english transcript from a Youtube video id."""
     try:
-        fetched_transcript = YouTubeTranscriptApi().fetch(video_id, languages=['en'])
+        transcript_list = YouTubeTranscriptApi().list(video_id)
+        # 1. Try manual or generated english
+        try:
+            fetched = transcript_list.find_transcript(['en', 'en-US', 'en-GB'])
+        except Exception:
+            try:
+                fetched = transcript_list.find_generated_transcript(['en', 'en-US', 'en-GB'])
+            except Exception:
+                # 2. Fall back to any language, translate to English
+                base_transcript = transcript_list.find_transcript(transcript_list._find_manually_created_language() or transcript_list._find_generated_language())
+                fetched = base_transcript.translate('en')
+
+        fetched_transcript = fetched.fetch()
         transcript = " ".join(chunk.text for chunk in fetched_transcript)
-        return transcript
+        return transcript, None
     except TranscriptsDisabled:
-        return None
+        return None, "Transcripts Disabled"
     except Exception as e:
-        return None
+        return None, str(e)
+
 
 def build_vector_store(transcript: str) -> FAISS:
     """Splits transcript and builds an in-memory FAISS vector store."""
