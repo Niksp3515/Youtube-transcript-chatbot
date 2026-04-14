@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Hide default streamlit UI elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Custom Gradient Text */
+.gradient-text {
+    background: -webkit-linear-gradient(45deg, #FF6B6B, #8A2BE2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Chat bubble aesthetics */
+.stChatMessage {
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.02) !important;
+    border: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+}
+
+/* Custom button */
+.stButton button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 24px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.stButton button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(118, 75, 162, 0.5) !important;
+}
+
+/* Input Fields styling */
+[data-testid="stTextInput"] div div {
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+}
+
+[data-testid="stTextInput"] div div:focus-within {
+    border: 1px solid #8A2BE2;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+}
+
+/* Chat Input Styling */
+.stChatInputContainer {
+    border: 1px solid rgba(138, 43, 226, 0.4) !important;
+    border-radius: 12px !important;
+    background: #1A1F2B !important;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.stChatInputContainer:focus-within {
+    border: 1px solid rgba(138, 43, 226, 1) !important;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+}

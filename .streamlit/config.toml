@@ -1,0 +1,19 @@
+[theme]
+# Primary accent color (vibrant purple)
+primaryColor = "#8A2BE2"
+
+# Background color for the main content area (deep space dark)
+backgroundColor = "#0E1117"
+
+# Background color for the sidebar (slightly lighter dark)
+secondaryBackgroundColor = "#1A1F2B"
+
+# Text color (light grey for readability)
+textColor = "#E0E6ED"
+
+# Font family (sans serif)
+font = "sans serif"
+
+[server]
+# Enable CORS for deployment if needed
+enableCORS = false
